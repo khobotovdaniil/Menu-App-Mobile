@@ -6,10 +6,13 @@ import { CATEGORIES } from '../data/dummy-data';
 
 export default function CategoriesScreen({ navigation }) {
   function renderCategoryItem(itemData) {
-    const { title, color } = itemData.item;
+    const { title, color, id } = itemData.item;
 
     const pressHandler = () => {
-      navigation.navigate('MealsOverview')
+      navigation.navigate('MealsOverview', {
+        categoryId: id,
+
+      })
     }
 
     return (
