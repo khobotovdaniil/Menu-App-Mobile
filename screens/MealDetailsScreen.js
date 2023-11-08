@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
 
 import { MEALS } from "../data/dummy-data";
 import { MealDetails } from "../components/MealDetails";
 import { Subtitle } from "../components/MealDetail/Subtitle";
 import { List } from "../components/MealDetail/List";
+import { IconButton } from '../components/IconButton'
 
-export default function MealDetailsScreen({ route }) {
+export default function MealDetailsScreen({ route, navigation }) {
   const {
     imageUrl,
     title,
@@ -17,8 +18,26 @@ export default function MealDetailsScreen({ route }) {
     steps
   } = MEALS.find((meal) => meal.id === route.params.mealId)
 
+  const pressHandler = () => {
+
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon='star'
+            color='white'
+            onPress={pressHandler}
+          />
+        )
+      }
+    })
+  }, [navigation, pressHandler])
+
   return (
-    <ScrollView>
+    <ScrollView style={styles.rootContainer}>
       <Image style={styles.image} source={{ uri: imageUrl }} />
       <Text style={styles.title}>{title}</Text>
       <MealDetails
@@ -40,6 +59,9 @@ export default function MealDetailsScreen({ route }) {
 }
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    marginBottom: 32
+  },
   image: {
     width: '100%',
     height: 350,
