@@ -1,23 +1,24 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import CategoriesScreen from './screens/CategoriesScreen'
-import MealsOverviewScreen from './screens/MealsOverviewScreen'
+import CategoriesScreen from './screens/CategoriesScreen';
+import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import MealDetailsScreen from './screens/MealDetailsScreen';
+import Colors from './constants/colors';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      <StatusBar style='dark' />
+      <StatusBar style='light' />
       <NavigationContainer>
         <Stack.Navigator screenOptions={{
-          headerStyle: { backgroundColor: '#490d0d' },
+          headerStyle: { backgroundColor: Colors.MAIN_700 },
           headerTintColor: 'white',
-          contentStyle: { backgroundColor: '#763c3c' },
+          contentStyle: { backgroundColor: Colors.MAIN_500 },
         }}>
           <Stack.Screen
             name="MealsCategories"
@@ -30,12 +31,12 @@ export default function App() {
             name="MealsOverview"
             component={MealsOverviewScreen}
           />
+          <Stack.Screen
+            name="MealDetails"
+            component={MealDetailsScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
   )
 }
-
-const styles = StyleSheet.create({
-
-});

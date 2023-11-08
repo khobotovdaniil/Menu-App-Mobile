@@ -23,8 +23,9 @@ export default function MealsOverviewScreen({ route, navigation }) {
   }, [catId, navigation])
 
   const renderMealItem = (itemData) => {
-    const { title, imageUrl, duration, complexity, affordability } = itemData.item
+    const { id, title, imageUrl, duration, complexity, affordability } = itemData.item
     const MealItemProps = {
+      id,
       title,
       imageUrl,
       duration,
