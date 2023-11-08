@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { StyleSheet, Pressable, View, Text, Image, Platform } from "react-native";
 
-import { MealDetails } from "./MealDetails";
+import { MealDetails } from "../MealDetails";
 
 export const MealItem = ({ id, title, imageUrl, duration, complexity, affordability }) => {
   const navigation = useNavigation()

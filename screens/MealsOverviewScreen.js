@@ -1,19 +1,18 @@
 import React, { useLayoutEffect } from "react";
-import { StyleSheet, View, FlatList } from "react-native";
 
 import { MEALS, CATEGORIES } from "../data/dummy-data";
-import { MealItem } from "../components/MealItem";
+import { MealsList } from "../components/MealsList/MealsList";
 
 export default function MealsOverviewScreen({ route, navigation }) {
   const catId = route.params.categoryId;
 
-  const displayedMeals = MEALS.filter((mealItem) => {
+  const displayedMeals = MEALS.filter(mealItem => {
     return mealItem.categoryIds.indexOf(catId) >= 0;
   })
 
   useLayoutEffect(() => {
     const categoryTitle = CATEGORIES.find(
-      (category) => category.id === catId
+      category => category.id === catId
     ).title;
 
     navigation.setOptions({
@@ -22,34 +21,5 @@ export default function MealsOverviewScreen({ route, navigation }) {
 
   }, [catId, navigation])
 
-  const renderMealItem = (itemData) => {
-    const { id, title, imageUrl, duration, complexity, affordability } = itemData.item
-    const MealItemProps = {
-      id,
-      title,
-      imageUrl,
-      duration,
-      complexity,
-      affordability
-    }
-
-    return <MealItem {...MealItemProps} />
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  )
+  return <MealsList items={displayedMeals} />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16
-  }
-})
